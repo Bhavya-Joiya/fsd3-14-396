@@ -10,7 +10,7 @@ const server = http.createServer((req,res)=>{
     else if(http.url=='/product'){
         res.end(`<h1>Mobile Phone</h1>
                  <h2>Price: 25000</h2>
-                 <p>Discout: 5%</p>
+                 <p>Discount: 5%</p>
                  <a href='#'>Buy Now</a>
                  `);
     }

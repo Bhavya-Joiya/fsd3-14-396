@@ -1,4 +1,4 @@
-let team = [
+let teams = [
     {
         id: 1,
         tname: "Rusty",

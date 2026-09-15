@@ -1,5 +1,11 @@
 import http from "http";
-import { getAllTeams, addTeam, getTeamById } from "./teams.js";
+import {
+  getAllTeams,
+  addTeam,
+  getTeamById,
+  deleteTeam,
+  updateTeamById,
+} from "./teams.js";
 import { parse as parseUrl } from "url";
 
 const PORT = 5000;
@@ -54,6 +60,32 @@ const server = http.createServer(async (req, res) => {
         error: `Team with id: ${id} not found`,
       });
     return sendJson(res, 200, team, "Message", "Team Found");
+  } else if (pathname.startsWith("/api/v1/teams/") && method === "DELETE") {
+    const id = Number(pathname.split("/").pop());
+    const team = getTeamById(id);
+
+    if (!team)
+      return sendJson(res, 400, {
+        error: `Team with id: ${id} not found`,
+      });
+    deleteTeam(id);
+    return sendJson(res, 200, team, "Message", "Team Found");
+  } else if (pathname.startsWith("/api/v1/teams/") && method === "PUT") {
+    const id = Number(pathname.split("/").pop());
+    const oldteam = getTeamById(id);
+    if (!oldteam)
+      return sendJson(res, 400, {
+        error: `Team with id: ${id} not found`,
+      });
+
+    const { tname, tl, members } = await parseJSONBody(req);
+    if (!tname || !tl || !members)
+      return sendJson(res, 400, {
+        error: "Team Name, Team Leader, or Members not defined",
+      });
+    const updateTeam = updateTeamById({ tname, tl, members });
+
+    return sendJson(res, 200, team, "Message", "Team updated successfully");
   } else {
     res.statusCode = 404;
     res.end("Not matching");

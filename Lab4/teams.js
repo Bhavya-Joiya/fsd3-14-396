@@ -2,16 +2,16 @@ let teams = [
   {
     id: 1,
     tname: "Rusty",
-    tl: "Avinash",
-    email: "avinash.jha@gmail.com",
+    tl: "Aashish Raj Singh",
+    email: "ashi.raj@gmail.com",
     members: 6,
   },
   {
     id: 2,
-    tname: "Assemblers",
-    tl: "Ayush Belwal",
-    email: "ayush.belwal@gmail.com",
-    members: 6,
+    tname: "Code Crafters",
+    tl: "Manisha Singh",
+    email: "mani.singh@gmail.com",
+    members: 5,
   },
 ];
 
@@ -22,7 +22,7 @@ export const getAllTeams = () => teams;
 export const getTeamById = (id) => teams.find((team) => team.id === id);
 
 export const addTeam = (newTeam) => {
-  const team = { id: nextId++, newTeam };
+  const team = { id: nextId++, ...newTeam };
   teams.push(team);
   return team;
 };

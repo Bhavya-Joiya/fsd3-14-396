@@ -1,14 +1,17 @@
 {
   "name": "lab4",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "1. create project folder\r 2. right click on project folder and select open in integrated terminal\r 3. type in terminal `npm in it -y` press enter\r 4. open package.json file from project folder\r 5. update type as `type : module` in package.json\r 6. type in terminal `npm i nodemon -D` to install nodemon, which restartss server while file changes. -D flag indicate install as dev dependency\r it creates node_modules and package-lock.json\r 8. update .gitignore file and write project-folder/node_modules\r 9. update package.json to run the project, update script property\r 10. now you can start the server by typing `npm run dev` in the terminal of project folder",
+  "main": "app.js",
   "scripts": {
-    "start":"node app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "3.1.14"
+  }
 }
